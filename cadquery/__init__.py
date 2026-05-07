@@ -20,6 +20,7 @@ Personal fork notes:
     - Added __version_info__ tuple for easier programmatic version comparisons
     - Added __author_email__ for completeness
     - Added __description__ for convenience (e.g. useful when introspecting the module)
+    - Added __url__ pointing to the upstream docs
     - See also: https://cadquery.readthedocs.io
 """
 
@@ -64,6 +65,7 @@ __author__ = "CadQuery Contributors"
 __author_email__ = "cadquery@cadquery.readthedocs.io"  # added for completeness
 __license__ = "Apache License 2.0"
 __description__ = "A parametric 3D CAD scripting framework built on top of OCCT"  # handy for quick introspection
+__url__ = "https://cadquery.readthedocs.io"  # upstream docs URL, useful for tooling/IDEs
 
 __all__ = [
     # Core workplane
@@ -112,4 +114,5 @@ __all__ = [
     "__version__",
     "__version_info__",
     "__description__",
+    "__url__",
 ]
