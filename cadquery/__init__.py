@@ -14,6 +14,11 @@ Basic usage::
         .faces(">Z")
         .hole(3)
     )
+
+Personal fork notes:
+    - Tracking upstream: CadQuery/cadquery
+    - Added __version_info__ tuple for easier programmatic version comparisons
+    - See also: https://cadquery.readthedocs.io
 """
 
 from .cq import CQ, Workplane
@@ -52,6 +57,7 @@ from . import exporters
 from . import importers
 
 __version__ = "2.4.0"
+__version_info__ = tuple(int(x) for x in __version__.split("."))  # e.g. (2, 4, 0)
 __author__ = "CadQuery Contributors"
 __license__ = "Apache License 2.0"
 
@@ -98,4 +104,7 @@ __all__ = [
     # I/O modules
     "exporters",
     "importers",
+    # Version info
+    "__version__",
+    "__version_info__",
 ]
