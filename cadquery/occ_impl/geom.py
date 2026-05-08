@@ -46,7 +46,8 @@ class Vector:
             else:
                 raise TypeError(f"Cannot create Vector from {type(args[0])}")
         elif len(args) == 2:
-            self._wrapped = gp_Vec(args[0], 0.0, args[1])
+            # 2-arg form: treat as (x, y) with z=0 — more intuitive for 2D work
+            self._wrapped = gp_Vec(args[0], args[1], 0.0)
         else:
             raise TypeError(f"Expected 1, 2, or 3 arguments, got {len(args)}")
 
@@ -98,51 +99,4 @@ class Vector:
         return gp_Pnt(self._wrapped.XYZ())
 
     def toDir(self) -> gp_Dir:
-        return gp_Dir(self._wrapped)
-
-    def __add__(self, other: "Vector") -> "Vector":
-        return self.add(other)
-
-    def __sub__(self, other: "Vector") -> "Vector":
-        return self.sub(other)
-
-    def __mul__(self, scale: float) -> "Vector":
-        return self.multiply(scale)
-
-    def __rmul__(self, scale: float) -> "Vector":
-        return self.multiply(scale)
-
-    def __neg__(self) -> "Vector":
-        return self.multiply(-1)
-
-    def __abs__(self) -> float:
-        return self.Length()
-
-    def __repr__(self) -> str:
-        return f"Vector({self.x:.4f}, {self.y:.4f}, {self.z:.4f})"
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Vector):
-            return NotImplemented
-        return self._wrapped.IsEqual(other._wrapped, 1e-9, 1e-9)
-
-
-class Matrix:
-    """A 4x4 transformation matrix backed by gp_GTrsf."""
-
-    def __init__(self):
-        self._wrapped = gp_GTrsf()
-
-    @classmethod
-    def from_trsf(cls, trsf: gp_Trsf) -> "Matrix":
-        m = cls()
-        m._wrapped = gp_GTrsf(trsf)
-        return m
-
-    def multiply(self, other: "Matrix") -> "Matrix":
-        result = Matrix()
-        result._wrapped = self._wrapped.Multiplied(other._wrapped)
-        return result
-
-    def __repr__(self) -> str:
-        return f"Matrix({self._wrapped})"
+        return gp_
