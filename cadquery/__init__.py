@@ -21,6 +21,7 @@ Personal fork notes:
     - Added __author_email__ for completeness
     - Added __description__ for convenience (e.g. useful when introspecting the module)
     - Added __url__ pointing to the upstream docs
+    - Added __author__ and __license__ to __all__ for consistency with other metadata exports
     - See also: https://cadquery.readthedocs.io
 """
 
@@ -110,9 +111,12 @@ __all__ = [
     # I/O modules
     "exporters",
     "importers",
-    # Version info
+    # Version and package metadata
     "__version__",
     "__version_info__",
+    "__author__",
+    "__author_email__",
+    "__license__",
     "__description__",
     "__url__",
 ]
