@@ -99,8 +99,15 @@ class Shape:
         brepgprop_SurfaceProperties(self._shape, props)
         return props.Mass()
 
-    def center_of_mass(self) -> Vector:
-        """Return the center of mass of the shape."""
-        props = GProp_GProps()
-        brepgprop_VolumeProperties(self._shape, props)
-        com = props
+    def __repr__(self) -> str:
+        """Return a helpful string representation showing basic shape info.
+
+        Added this because the default repr was useless during debugging sessions.
+        """
+        if self.is_null():
+            return "Shape(null)"
+        min_pt, max_pt = self.bounding_box()
+        return (
+            f"Shape(bbox=[({min_pt.x:.3f}, {min_pt.y:.3f}, {min_pt.z:.3f}), "
+            f"({max_pt.x:.3f}, {max_pt.y:.3f}, {max_pt.z:.3f})])"
+        )
