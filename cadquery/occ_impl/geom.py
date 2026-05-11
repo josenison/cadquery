@@ -92,11 +92,15 @@ class Vector:
         """Return the angle in radians between this vector and another."""
         return self._wrapped.Angle(other._wrapped)
 
+    def getAngleDegrees(self, other: "Vector") -> float:
+        """Return the angle in degrees between this vector and another.
+
+        Convenience wrapper around getAngle() for when degrees are more readable.
+        """
+        return math.degrees(self._wrapped.Angle(other._wrapped))
+
     def toTuple(self) -> Tuple[float, float, float]:
         return (self.x, self.y, self.z)
 
     def toPnt(self) -> gp_Pnt:
-        return gp_Pnt(self._wrapped.XYZ())
-
-    def toDir(self) -> gp_Dir:
-        return gp_
+        return gp_Pnt(self.x, self.y, self.z)
