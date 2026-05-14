@@ -95,12 +95,7 @@ class Vector:
     def getAngleDegrees(self, other: "Vector") -> float:
         """Return the angle in degrees between this vector and another.
 
-        Convenience wrapper around getAngle() for when degrees are more readable.
+        Convenience wrapper around getAngle() — I find myself converting
+        to degrees constantly, so this saves the math.degrees() call.
         """
-        return math.degrees(self._wrapped.Angle(other._wrapped))
-
-    def toTuple(self) -> Tuple[float, float, float]:
-        return (self.x, self.y, self.z)
-
-    def toPnt(self) -> gp_Pnt:
-        return gp_Pnt(self.x, self.y, self.z)
+        return math.degrees(self.getAngle(other))
